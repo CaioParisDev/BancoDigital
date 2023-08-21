@@ -11,7 +11,6 @@ public class Clientes {
 	public enum tipoPessoa {
 		FISICA, JURIDICA
 	}
-	String nome;
 	Documentos documento;
 	List<Enderecos> endereco = new ArrayList<>();
 	

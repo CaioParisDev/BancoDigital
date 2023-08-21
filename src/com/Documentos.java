@@ -13,9 +13,8 @@ public class Documentos {
 		return nomeCompleto;
 	}
 
-	public int setNomeCompleto(String nomeCompleto) {
+	public void setNomeCompleto(String nomeCompleto) {
 		this.nomeCompleto = nomeCompleto;
-		return 1;
 	}
 
 	public Nascimento getDataNascimento() {
@@ -36,15 +35,21 @@ public class Documentos {
 		}
 		if (numero.length() == tamanhoCPF) {
 			this.numero = numero;
-			System.out.println("\nCPF cadastrado com sucesso!\n");
 			return 1;
 		} else if (numero.length() == tamanhoCNPJ) {
 			this.numero = numero;
-			System.out.println("\nCNPJ cadastrado com sucesso!\n");
 			return 1;
 		} else {
 			System.out.println("\nInsira um CPF/CNPJ válido.\n");
 			return 0;
 		}
 	}
+	
+	public String toString() {
+		return "Nome Completo: " + this.nomeCompleto +
+				"\nCPF/CNPJ: " + this.numero +
+				"\nData de Nascimento: " + this.dataNascimento;
+		
+	}
+	
 }
