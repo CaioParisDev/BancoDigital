@@ -1,21 +1,30 @@
 package com;
 
 public class Enderecos {
-	
-	public enum Tipos{
-		CASA, TRABALHO
+
+	private String cep;
+	private String numero;
+
+	public String getCep() {
+		return cep;
 	}
-	
-	public enum Estados {
-		ACRE, ALAGOAS, AMAPÁ, AMAZONAS, BAHIA, CEARÁ, DISTRITO_FEDERAL, ESPÍRITO_SANTO, GOIÁS, MARANHÃO,
-		MATO_GROSSO, MATO_GROSSO_DO_SUL, MINAS_GERAIS, PARÁ, PARAÍBA, PARANÁ, PERNAMBUCO, PIAUÍ, RIO_DE_JANEIRO,
-		RIO_GRANDE_DO_NORTE, RIO_GRANDE_DO_SUL, RONDÔNIA, RORAIMA, SANTA_CATARINA, SÃO_PAULO, SERGIPE, TOCANTINS
+
+	public int setCep(String cep) {
+		if (cep.length() == 8) {
+			this.cep = cep;
+			return 1;
+		} else {
+			System.out.println("CEP inválido.");
+			return 0;
+		}
 	}
-	
-	Estados estado;
-	String cidade;
-	String bairro;
-	String rua;
-	String numero;
-	Tipos tipo;
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
 }

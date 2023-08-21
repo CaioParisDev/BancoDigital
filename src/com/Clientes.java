@@ -12,6 +12,9 @@ public class Clientes {
 		FISICA, JURIDICA
 	}
 	Documentos documento;
-	List<Enderecos> endereco = new ArrayList<>();
+	List<Enderecos> cep = new ArrayList<>();
 	
+	public String toString() {
+		return "" + documento + "";
+	}
 }
