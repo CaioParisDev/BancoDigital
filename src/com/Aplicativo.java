@@ -9,6 +9,7 @@ public class Aplicativo {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		List<Clientes> cliente = new ArrayList<>();
+
 		int opcao = 0;
 		do {
 			try {
@@ -21,67 +22,76 @@ public class Aplicativo {
 
 			switch (opcao) {
 			case 1:
-
 				sc.nextLine();
 				Documentos documento = new Documentos();
-
-				int numeroDocumento = 0; // Serve para verificar se o método foi executado do jeito esperado
-				do { // As funções returnam 1 para: "realizado" e 0 para:"fazer novamente"
+				
+				boolean loop = true;
+				do {
 					System.out.println("Digite o CPF/CNPJ: ");
-					numeroDocumento = documento.setNumero(sc.nextLine());
-				} while (numeroDocumento != 1);
+					String numero = sc.nextLine();
+					loop = documento.setNumero(numero);
+				} while (loop);
 
-				System.out.println("Digite seu nome completo: ");
-				documento.setNomeCompleto(sc.nextLine());
+				do {
+					System.out.println("Digite seu nome completo: ");
+					String nome = sc.nextLine();
+					loop = documento.setNomeCompleto(nome);
+				} while (loop);
 
 				Nascimento dataNascimento = new Nascimento();
 
-				int data = 0;
-				int mes = 0;
-				int ano = 0;
 				do {
 					try {
 						System.out.println("Insira sua data de nascimento:\nDia: ");
-						data = dataNascimento.setDia(sc.nextInt());
+						Integer dia = sc.nextInt();
+						loop = dataNascimento.setDia(dia);
 					} catch (Exception e) {
 						System.out.println("Insira um dia válido.");
 						sc.nextLine();
+						loop = true;
+						
 					}
-				} while (data != 1);
+				} while (loop);
 				do {
 					try {
 						System.out.println("Mês (em número): ");
-						mes = dataNascimento.setMes(sc.nextInt());
+						Integer mes = sc.nextInt();
+						loop = dataNascimento.setMes(mes);
 					} catch (Exception e) {
 						System.out.println("Insira um mês válido.");
 						sc.nextLine();
+						loop = true;
+						
 					}
-				} while (mes != 1);
+				} while (loop);
 				do {
 					try {
 						System.out.println("Ano: ");
-						ano = dataNascimento.setAno(sc.nextInt());
+						Integer ano = sc.nextInt();
+						loop = dataNascimento.setAno(ano);
 					} catch (Exception e) {
 						System.out.println("Insira um ano válido.");
 						sc.nextLine();
+						loop = true;
+						
 					}
-				} while (ano != 1);
+				} while (loop);
 
 				Enderecos endereco = new Enderecos();
-				int a = 0;
+
 				sc.nextLine();
 				do {
-					try {
-						System.out.println("Agora, digite o seu CEP: ");
-						endereco.setCep(sc.nextLine());
-						Integer.parseInt(endereco.getCep());
-						System.out.println("Digite o número: ");
-						endereco.setNumero(sc.nextLine());
-						break;
-					} catch (Exception e) {
-						System.out.println("\nO valor contém letras.\n");
+					System.out.println("Agora, digite o seu CEP: ");
+					loop = endereco.setCep(sc.nextLine());
+					System.out.println("Digite o número: ");
+					endereco.setNumero(sc.nextLine());
+				} while (loop);
+
+				for (Clientes i : cliente) {
+					if (i != null) {
+						System.out.println(i);
 					}
-				} while (a != 1);
+				}
 				break;
 			case 2:
 				break;

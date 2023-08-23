@@ -1,5 +1,7 @@
 package com;
 
+import java.util.Scanner;
+
 public class Documentos {
 	private static final int tamanhoCPF = 11;
 	private static final int tamanhoCNPJ = 14;
@@ -9,47 +11,73 @@ public class Documentos {
 	private String nomeDoPai;
 	private String nomeDaMae;
 
+	public Documentos() {
+	}
+
+	private Documentos(String nome, Nascimento data, String numero, String nomePai, String nomeMae) {
+		this.nomeCompleto = nome;
+		this.dataNascimento = data;
+		this.numero = numero;
+		this.nomeDoPai = nomePai;
+		this.nomeDaMae = nomeMae;
+	}
+
+	public Documentos criarDocumento(String nome, Nascimento data, String numero, String nomePai, String nomeMae) {
+		return new Documentos(nome, data, numero, nomePai, nomeMae);
+	}
+
 	public String getNomeCompleto() {
 		return nomeCompleto;
 	}
 
-	public void setNomeCompleto(String nomeCompleto) {
-		this.nomeCompleto = nomeCompleto;
+	public boolean setNomeCompleto(String nome) {
+		if (nome.length() <= 4) {
+			System.out.println("Insira um nome válido.");
+			return true;
+		} else {
+			nomeCompleto = nome;
+			return false;
+		}
 	}
 
 	public Nascimento getDataNascimento() {
 		return dataNascimento;
 	}
-	
+
 	public void setDataNascimento(Nascimento dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	
+
 	public String getNumero() {
 		return numero;
 	}
 
-	public int setNumero(String numero) {
-		if (this.numero == null || this.numero.isEmpty()) {
-			this.numero = new String();
-		}
-		if (numero.length() == tamanhoCPF) {
-			this.numero = numero;
-			return 1;
-		} else if (numero.length() == tamanhoCNPJ) {
-			this.numero = numero;
-			return 1;
-		} else {
-			System.out.println("\nInsira um CPF/CNPJ válido.\n");
-			return 0;
+	public boolean setNumero(String numero) {
+		try {
+			if (numero.length() == tamanhoCPF) {
+				long numeroFormat = Long.parseLong(numero);
+				this.numero = numero;
+				return false;
+
+			} else if (numero.length() == tamanhoCNPJ) {
+				long numeroFormat = Long.parseLong(numero);
+				this.numero = numero;
+				return false;
+
+			} else {
+				System.out.println("\nInsira um CPF/CNPJ válido.\n");
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("\nO valor contém letras.\n");
+			return true;
 		}
 	}
-	
+
 	public String toString() {
-		return "Nome Completo: " + this.nomeCompleto +
-				"\nCPF/CNPJ: " + this.numero +
-				"\nData de Nascimento: " + this.dataNascimento;
-		
+		return "Nome Completo: " + this.nomeCompleto + "\nCPF/CNPJ: " + this.numero + "\nData de Nascimento: "
+				+ this.dataNascimento;
+
 	}
-	
+
 }

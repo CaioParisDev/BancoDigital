@@ -4,18 +4,31 @@ public class Enderecos {
 
 	private String cep;
 	private String numero;
+	
+	public Enderecos() {}
+	
+	public Enderecos(String cep, String numero) {
+		this.cep = cep;
+		this.numero = numero;
+	}
 
 	public String getCep() {
 		return cep;
 	}
 
-	public int setCep(String cep) {
+	public boolean setCep(String cep) {
 		if (cep.length() == 8) {
-			this.cep = cep;
-			return 1;
+			try {
+				Integer.parseInt(cep);
+				this.cep = cep;
+				return false;
+			} catch (Exception e) {
+				System.out.println("\nO valor contém letras.\n");
+				return true;
+			}
 		} else {
 			System.out.println("CEP inválido.");
-			return 0;
+			return true;
 		}
 	}
 

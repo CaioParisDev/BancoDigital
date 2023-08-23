@@ -12,19 +12,18 @@ public class Nascimento {
 		return ano;
 	}
 
-	public int setAno(Integer ano) {
+	public boolean setAno(Integer ano) {
 		int anoAtual = LocalDate.now().getYear();
-		System.out.println(anoAtual);
 		if (ano > (anoAtual - 100) && ano < anoAtual) {
 			if (ano > anoAtual - 18) {
 				System.out.println("Menor de idade não pode abrir uma conta.");
-				return 0;
+				return true;
 			}
 			this.ano = ano;
-			return 1;
+			return false;
 		} else {
 			System.out.println("O ano digitado ultrapassa o estipulado.");
-			return 0;
+			return true;
 		}
 	}
 
@@ -32,13 +31,13 @@ public class Nascimento {
 		return mes;
 	}
 
-	public int setMes(Integer mes) {
+	public boolean setMes(Integer mes) {
 		if (mes >= 1 && mes <= 12) {
 			this.mes = mes;
-			return 1;
+			return false;
 		} else {
 			System.out.println("Insira um mês válido.");
-			return 0;
+			return true;
 		}
 	}
 
@@ -46,13 +45,13 @@ public class Nascimento {
 		return dia;
 	}
 
-	public int setDia(Integer dia) {
+	public boolean setDia(Integer dia) {
 		if (dia >= 1 && dia <= 31) {
 			this.dia = dia;
-			return 1;
+			return false;
 		} else {
 			System.out.println("Insira um dia válido");
-			return 0;
+			return true;
 		}
 	}
 

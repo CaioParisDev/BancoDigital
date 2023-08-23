@@ -12,9 +12,23 @@ public class Clientes {
 		FISICA, JURIDICA
 	}
 	Documentos documento;
-	List<Enderecos> cep = new ArrayList<>();
+	List<Enderecos> endereco = new ArrayList<>();
+	
+	public Clientes(Documentos documento, List<Enderecos> endereco) {
+		this.documento = documento;
+		this.endereco = endereco;
+	}
+	
+	public List<Enderecos> getEndereco() {
+		return this.endereco;
+	}
+	
+	public void setEndereco(Enderecos obj) {
+		endereco.add(obj);
+	}
 	
 	public String toString() {
-		return "" + documento + "";
+		return "Nome: " + documento.getNomeCompleto() + "\nCPF/CNPJ: " + documento.getNumero() +
+				"\nData de nascimento: " + documento.getDataNascimento() + "\nCEP: ";
 	}
 }
