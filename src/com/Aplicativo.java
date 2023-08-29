@@ -87,11 +87,7 @@ public class Aplicativo {
 					endereco.setNumero(sc.nextLine());
 				} while (loop);
 
-				for (Clientes i : cliente) {
-					if (i != null) {
-						System.out.println(i);
-					}
-				}
+				System.out.println("Conta criada com sucesso!");
 				break;
 			case 2:
 				break;
