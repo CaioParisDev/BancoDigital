@@ -1,7 +1,8 @@
 package com;
 
 public class Enderecos {
-
+	
+	private String tipo;
 	private String cep;
 	private String numero;
 	
@@ -38,6 +39,14 @@ public class Enderecos {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 }

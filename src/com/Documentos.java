@@ -1,29 +1,25 @@
 package com;
 
-import java.util.Scanner;
-
 public class Documentos {
 	private static final int tamanhoCPF = 11;
 	private static final int tamanhoCNPJ = 14;
 	private String nomeCompleto;
 	private Nascimento dataNascimento;
 	private String numero;
-	private String nomeDoPai;
-	private String nomeDaMae;
+	
 
 	public Documentos() {
 	}
 
-	private Documentos(String nome, Nascimento data, String numero, String nomePai, String nomeMae) {
+	private Documentos(String nome, Nascimento data, String numero) {
 		this.nomeCompleto = nome;
 		this.dataNascimento = data;
 		this.numero = numero;
-		this.nomeDoPai = nomePai;
-		this.nomeDaMae = nomeMae;
+		
 	}
 
-	public Documentos criarDocumento(String nome, Nascimento data, String numero, String nomePai, String nomeMae) {
-		return new Documentos(nome, data, numero, nomePai, nomeMae);
+	public Documentos criarDocumento(String nome, Nascimento data, String numero) {
+		return new Documentos(nome, data, numero);
 	}
 
 	public String getNomeCompleto() {

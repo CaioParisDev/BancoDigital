@@ -8,8 +8,8 @@ public class Aplicativo {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		List<Clientes> cliente = new ArrayList<>();
-
+		List<Clientes> listaClientes = new ArrayList<>();
+		
 		int opcao = 0;
 		do {
 			try {
@@ -24,7 +24,9 @@ public class Aplicativo {
 			case 1:
 				sc.nextLine();
 				Documentos documento = new Documentos();
-				
+				Nascimento dataNascimento = new Nascimento();
+				Clientes cliente = new Clientes();
+
 				boolean loop = true;
 				do {
 					System.out.println("Digite o CPF/CNPJ: ");
@@ -38,8 +40,8 @@ public class Aplicativo {
 					loop = documento.setNomeCompleto(nome);
 				} while (loop);
 
-				Nascimento dataNascimento = new Nascimento();
-
+				// Data de nascimento
+				
 				do {
 					try {
 						System.out.println("Insira sua data de nascimento:\nDia: ");
@@ -49,7 +51,7 @@ public class Aplicativo {
 						System.out.println("Insira um dia válido.");
 						sc.nextLine();
 						loop = true;
-						
+
 					}
 				} while (loop);
 				do {
@@ -61,7 +63,7 @@ public class Aplicativo {
 						System.out.println("Insira um mês válido.");
 						sc.nextLine();
 						loop = true;
-						
+
 					}
 				} while (loop);
 				do {
@@ -73,10 +75,19 @@ public class Aplicativo {
 						System.out.println("Insira um ano válido.");
 						sc.nextLine();
 						loop = true;
-						
-					}
-				} while (loop);
 
+					}
+				} while (loop);				
+				documento.setDataNascimento(dataNascimento);
+				
+				//Definição Enums
+				if (documento.getNumero().length() == 11) {
+					cliente.tipoPessoa = Clientes.TipoPessoa.FISICA;
+				} else if (documento.getNumero().length() == 14) {
+					cliente.tipoPessoa = Clientes.TipoPessoa.JURIDICA;
+				}
+
+				// Endereço
 				Enderecos endereco = new Enderecos();
 
 				sc.nextLine();
@@ -85,7 +96,31 @@ public class Aplicativo {
 					loop = endereco.setCep(sc.nextLine());
 					System.out.println("Digite o número: ");
 					endereco.setNumero(sc.nextLine());
+					do {
+						try {
+							System.out.println("Selecione o tipo de endereço:\n1.Residência\n2.Trabalho");
+							Integer tipo = sc.nextInt();
+							switch (tipo) {
+							case 1:
+								endereco.setTipo("Residência");
+								loop = false;
+								break;
+							case 2:
+								endereco.setTipo("Trabalho");
+								loop = false;
+								break;
+							default:
+								System.out.println("Opção inválida.");
+								loop = true;
+								break;
+							}
+						} catch (Exception e) {
+							System.out.println("A opção digitada não é um número.");
+						}
+					} while (loop);
 				} while (loop);
+				
+				
 
 				System.out.println("Conta criada com sucesso!");
 				break;

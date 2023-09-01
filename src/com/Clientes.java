@@ -5,30 +5,45 @@ import java.util.List;
 
 public class Clientes {
 
-	public enum tipoConta {
+	public enum TipoConta {
 		CORRENTE, POUPANCA
 	}
-	public enum tipoPessoa {
+	public enum TipoPessoa {
 		FISICA, JURIDICA
 	}
+	
 	Documentos documento;
-	List<Enderecos> endereco = new ArrayList<>();
+	List<Enderecos> listaEnderecos = new ArrayList<>();
+	TipoConta tipoConta;
+	TipoPessoa tipoPessoa;
+	
+	public Clientes() {}
 	
 	public Clientes(Documentos documento, List<Enderecos> endereco) {
 		this.documento = documento;
-		this.endereco = endereco;
+		this.listaEnderecos = endereco;
 	}
 	
 	public List<Enderecos> getEndereco() {
-		return this.endereco;
+		return this.listaEnderecos;
 	}
 	
-	public void setEndereco(Enderecos obj) {
-		endereco.add(obj);
+	public void addEndereco(Enderecos obj) {
+		listaEnderecos.add(obj);
 	}
 	
 	public String toString() {
 		return "Nome: " + documento.getNomeCompleto() + "\nCPF/CNPJ: " + documento.getNumero() +
 				"\nData de nascimento: " + documento.getDataNascimento() + "\nCEP: ";
 	}
+
+	public Documentos getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(Documentos documento) {
+		this.documento = documento;
+	}
+	
+	
 }
